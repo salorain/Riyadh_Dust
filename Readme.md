@@ -35,8 +35,7 @@ Backward-trajectory statistics (PSCF, CWT) are widely used to locate arid-region
 
 | File | Purpose |
 |---|---|
-| `Riyadh_Dust.ipynb` | Main pipeline covering data acquisition, METAR classification, ERA5 processing, the indicator models, HYSPLIT trajectory generation and the original PSCF/CWT analysis. It runs on Google Colab with Google Drive. |
-| `Riyadh_Dust_Revision.ipynb` | Revision analyses. It reads files the main pipeline already wrote to Drive, so HYSPLIT is **not** rerun. It covers the class-conditional CWT, mutually exclusive classes, the stratum-standardized estimator, permutation nulls, the calibrated expectation with benchmarks, Tables 1–5 and S1, and Figures 1–8. |
+| `Riyadh_Dust.ipynb` | One Google Colab notebook that reproduces the paper. It runs from public data to every table and figure, with no stored outputs. |
 
 ---
 
@@ -48,13 +47,13 @@ Backward-trajectory statistics (PSCF, CWT) are widely used to locate arid-region
 | ERA5 hourly single levels | Copernicus Climate Data Store, https://cds.climate.copernicus.eu |
 | HYSPLIT v5.4.2 and GDAS 1° meteorology | NOAA Air Resources Laboratory, https://www.ready.noaa.gov |
 
-The raw data are not redistributed here. The notebooks download or read them into the Drive folder described below.
+The raw data are not redistributed here. The notebook downloads them into the Drive folder described below.
 
 ---
 
 ## How to run
 
-Both notebooks expect this Google Drive folder, which the main pipeline creates:
+The notebook uses this Google Drive folder and creates it as it runs:
 
 ```
 MyDrive/Research/Riyadh_Dust_Source_Attribution/
@@ -62,27 +61,30 @@ MyDrive/Research/Riyadh_Dust_Source_Attribution/
 ├── 03_Observations/METAR/      hourly METAR and homogeneity tables
 ├── 04_Analysis/                CLASS_daily_events.csv (daily class catalogue)
 ├── 05_HYSPLIT/trajectories/    tdump files (14,612 trajectories)
-├── 06_SourceAttribution/       PSCF/CWT outputs of the main pipeline
-└── 07_Revision/                written by Riyadh_Dust_Revision.ipynb
+└── 07_Revision/                tables and figures
 ```
 
-If your folder is elsewhere, edit `PROJECT` in cell 1.1 of the revision notebook.
+Run the cells in order. Each step skips work already saved on Drive.
 
-**Revision notebook (minimum run, a few minutes):**
-1. Run cell **1.1** to mount Drive, then run every cell of **Section 1**. These only write the analysis modules to `/content/rev_pkg`.
-2. Run **2.1** once. It exports per-trajectory endpoint counts from the existing `tdump` files (about 10 min) and skips itself if the export already exists.
-3. Run **7.1**, the trajectory re-analysis. It writes Tables 4, 5 and S1 as CSV and Figures 7–8.
+1. **Setup:** mount Drive. If your folder is elsewhere, edit `PROJECT`.
+2. **Section 1, Data** (run once; several hours):
+   - ERA5 download and daily receptor series
+   - METAR download, dust catalogue and homogeneity tests
+   - daily dust classes
+   - HYSPLIT trajectories
+   - indicator models (Table 2)
 
-These sections are optional:
-- 4.1 recreates Table 1.
-- 5.1 recreates the calibrated expectation (Tables 2–3).
-- 6.1 recreates Figures 1–6.
-- 3.1 exports a compact METAR file for an extra CWT intensity.
-- 8.x gives a first look at upwind ERA5 fields. It is not used in the paper.
+   HYSPLIT for Linux needs a free NOAA registration. Place the tarball at `05_HYSPLIT/hysplit_linux.tar.gz`.
+3. **Section 2, Analysis code:** writes the analysis modules to `/content/rev_pkg`.
+4. **Section 3, Results** (a few minutes):
+   - Table 1
+   - Tables 2–3 (calibrated expectation)
+   - Figures 1–6
+   - Tables 4, 5 and S1 and Figures 7–8 (trajectory statistics with 1000 permutations)
 
-Outputs are written to `07_Revision/outputs/` and `07_Revision/figures/` (PNG, 300 dpi).
+Outputs go to `07_Revision/outputs/` and `07_Revision/figures/` (PNG, 300 dpi). Random-forest results can differ by about 1% between scikit-learn versions.
 
-**Credentials.** No keys are stored in this repository. ERA5 downloads prompt for your CDS API key at run time. The OpenAQ and NASA Earthdata cells of the main pipeline are exploratory (PM10 and MERRA-2 access tests) and are not needed for the results. To run them, insert your own key where `<YOUR_OPENAQ_API_KEY>` appears, or log in when prompted.
+**Credentials.** No keys are stored. The ERA5 download asks for your CDS API key at run time.
 
 **Environment.** Standard Colab packages: numpy, pandas, scipy, scikit-learn, statsmodels, matplotlib and xarray. Coastlines (Natural Earth) are downloaded on first use.
 
