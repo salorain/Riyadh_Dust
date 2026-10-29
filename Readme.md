@@ -1,6 +1,7 @@
 # Transport Pathways Versus Dust Sources: A Negative-Control Test of Trajectory-Statistical Attribution in Riyadh, Saudi Arabia
 
-[![Paper Status](https://img.shields.io/badge/Paper-Under%20Review%20(Atmosphere)-orange.svg)]()
+[![Paper](https://img.shields.io/badge/Paper-Published%20in%20Atmosphere-brightgreen.svg)](https://doi.org/10.3390/atmos17111055)
+[![DOI](https://img.shields.io/badge/DOI-10.3390%2Fatmos17111055-blue.svg)](https://doi.org/10.3390/atmos17111055)
 [![Code](https://img.shields.io/badge/Code-Available-brightgreen.svg)]()
 [![Platform](https://img.shields.io/badge/Runs%20on-Google%20Colab-blue.svg)]()
 
@@ -8,7 +9,7 @@
 *Department of Civil Engineering, College of Engineering, Qassim University, Buraydah 51452, Saudi Arabia*
 **\*Correspondence:** `as.alnasser@qu.edu.sa`
 
-This repository contains the analysis code for the manuscript above. It is currently under review in *Atmosphere* (MDPI), and this is the revised version.
+This repository contains the analysis code for the paper above, published in *Atmosphere* (MDPI): https://doi.org/10.3390/atmos17111055
 
 ---
 
@@ -92,7 +93,22 @@ Outputs go to `07_Revision/outputs/` and `07_Revision/figures/` (PNG, 300 dpi). 
 
 ## Citation
 
-If you use this code, please cite the paper once it is published. The reference will be added here.
+If you use this code, please cite the paper:
+
+Aloraini, S.A.; Alnasser, A.S. Transport Pathways Versus Dust Sources: A Negative-Control Test of Trajectory-Statistical Attribution in Riyadh, Saudi Arabia. *Atmosphere* **2026**, *17*, 1055. https://doi.org/10.3390/atmos17111055
+
+```bibtex
+@article{Aloraini2026Atmosphere,
+  author  = {Aloraini, Saleh A. and Alnasser, Abdullah S.},
+  title   = {Transport Pathways Versus Dust Sources: A Negative-Control Test of Trajectory-Statistical Attribution in Riyadh, Saudi Arabia},
+  journal = {Atmosphere},
+  year    = {2026},
+  volume  = {17},
+  pages   = {1055},
+  doi     = {10.3390/atmos17111055},
+  url     = {https://doi.org/10.3390/atmos17111055}
+}
+```
 
 ## Contact
 
